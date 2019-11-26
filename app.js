@@ -11,6 +11,7 @@ const path         = require('path');
 const passport     = require("./config/passport");
 const session      = require('express-session');
 const flash        = require('connect-flash');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares/auth.middleware');
 
 
 mongoose
@@ -75,9 +76,10 @@ app.locals.title = 'Dynamic-course';
 const index = require('./routes/index');
 const authRoutes = require('./routes/authRoutes')
 const userRoutes = require("./routes/userRoutes");
-app.use('/', index);
+
+app.use('/',isLoggedIn, index);
 app.use('/', authRoutes)
-app.use('/', userRoutes)
+app.use('/',isNotLoggedIn, userRoutes)
 
 
 module.exports = app;

@@ -2,8 +2,11 @@ const { model, Schema } = require("mongoose");
 
 const courseSchema = new Schema(
   {
-    title: String,
-    categoria: {
+    title: {
+      type: String,
+      required: true
+    },
+    category: {
       type: String,
       enum: ["Ciencia", "Arte", "Tecnología"]
     },
@@ -16,11 +19,11 @@ const courseSchema = new Schema(
       ref:'User'
     },
     description: String,
-    fecha: String,
-    reviews: { //arreglo
+    date: String,
+    reviews:[{
       type: Schema.Types.ObjectId,
       ref:'Review'
-    }
+     }]  
   }
 );
 

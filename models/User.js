@@ -34,7 +34,10 @@ const userSchema = new Schema (
       type: Schema.Types.ObjectId,
       ref: 'User'
     }],
-    catedra :[Schema.Types.ObjectId]
+    catedra: [{
+     type: Schema.Types.ObjectId,
+     ref: 'User' 
+    }]
   },
   {
     timestamps: true,
