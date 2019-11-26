@@ -8,9 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-//const passport = require("./config/passport");
-//const session = require("express-session");
-//const { whichRole, isAuth } = require("./middlewares");
+const passport = require("./config/passport");
+const session = require("express-session");
+const { whichRole, isAuth } = require("./middlewares");
 
 
 mongoose
