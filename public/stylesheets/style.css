@@ -1,8 +1,26 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.navbar {
+  margin: 0px;
+  padding: 0 px; }
 
 a {
   color: #00B7FF; }
+
+div {
+  margin: 10px; }
+
+#div-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: brown; }
+
+.courses-list {
+  margin: 10px; }
+
+.card-img-top {
+  background-size: 50px; }
 
 /*# sourceMappingURL=style.css.map */
