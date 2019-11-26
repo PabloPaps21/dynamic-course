@@ -1,8 +1,9 @@
 require("dotenv").config();
 const User = require("../models/User");
 const { sendEmail } = require("../controllers/email")
+const passport = require('passport')
  
-exports.signupGet = (_, res) => res.render("auth/signup");
+exports.signupGet = (req, res) => res.render("auth/signup");
 
 exports.signupPost = (req, res, next) => {
     const { email, username, password, passwordrepeat } = req.body;
@@ -11,6 +12,7 @@ exports.signupPost = (req, res, next) => {
         msg: "Password must be the same"
       });
     }
+
     const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let token = '';
     for (let i = 0; i < 25; i++) {
@@ -24,7 +26,7 @@ exports.signupPost = (req, res, next) => {
       .catch(err => {
         console.log(err)
         if(err.name === "UserExistError"){
-          return res.render("auth/signup", {
+          return res.render("auth/login", {
             msg: "You are already registered"
           });
         }
@@ -47,11 +49,31 @@ exports.userToken = (req,res) => {
   .catch(err => console.log(err));
 }
 
-exports.loginGet = async(req, res) => {
-  res.render("auth/login");
+exports.loginGet = async (req, res) => {
+  await res.render("auth/login");
+}
+
+exports.loginPost = (req, res, next ) => {
+  passport.authenticate("local", (err, user, info) =>{
+    if(err) return console.log(err);
+    if(!user){
+      console.log(info)
+      return res.render("auth/login")
+    }
+    req.logIn(user, err => {
+      if (err) console.log(err)
+      req.user = user
+      console.log(user)
+      return res.redirect('/profile')//, {loggedUser: true}
+    })
+  })(req, res, next)
 }
 
 exports.profileGet = (req, res) => {
   res.render("auth/profile", {user: req.user});
 }
 
+exports.logOut = (req, res) => {
+  req.logOut()
+  res.redirect('/')
+}

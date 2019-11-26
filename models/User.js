@@ -30,7 +30,10 @@ const userSchema = new Schema (
       trim: true
     },
     credit: Number,
-    inscrito: [Schema.Types.ObjectId],
+    inscrito: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     catedra :[Schema.Types.ObjectId]
   },
   {
@@ -38,8 +41,8 @@ const userSchema = new Schema (
     versionKey: false
   }
 );
+ 
 
-
-userSchema.plugin(passportLocalMongoose, {usersnameField: "email"});
+userSchema.plugin(passportLocalMongoose, {usernameField: "email"});
 
 module.exports = model("User", userSchema)

@@ -1,7 +1,7 @@
 exports.isLoggedIn = (req, res,next) => {
-  req.isAuthenticated() ? next() : res.redirect("/login");
+  req.isAuthenticated() ? res.redirect('/profile') : next();
 };
 
 exports.isNotLoggedIn = (req,res, next) => {
-  !req.isAuthenticated() ? next() : res.redirect("/profile");
+  !req.isAuthenticated() ? res.redirect('/login') : next();
 };

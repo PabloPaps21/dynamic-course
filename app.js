@@ -8,9 +8,9 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const passport = require("./config/passport");
-const session = require('express-session');
-const flash = require('connect-flash');
+const passport     = require("./config/passport");
+const session      = require('express-session');
+const flash        = require('connect-flash');
 
 
 mongoose
@@ -33,9 +33,6 @@ app.use(flash());
 app.use(
   session({
     secret: process.env.SECRET,
-    cookie: {
-      maxAge: 1000 * 60 * 60 
-    },
     resave: false,
     saveUninitialized: true
   })
@@ -76,8 +73,11 @@ app.locals.title = 'Dynamic-course';
 
 
 const index = require('./routes/index');
+const authRoutes = require('./routes/authRoutes')
 const userRoutes = require("./routes/userRoutes");
 app.use('/', index);
+app.use('/', authRoutes)
+app.use('/', userRoutes)
 
 
 module.exports = app;

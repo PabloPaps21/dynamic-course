@@ -7,12 +7,20 @@ const courseSchema = new Schema(
       type: String,
       enum: ["Ciencia", "Arte", "Tecnología"]
     },
-    user_id:{
+    creatorId:{
       type: Schema.Types.ObjectId,
       ref:"User"
     },
+    studentId: {
+      type: Schema.Types.ObjectId,
+      ref:'User'
+    },
     description: String,
     fecha: String,
+    reviews: { //arreglo
+      type: Schema.Types.ObjectId,
+      ref:'Review'
+    }
   }
 );
 
