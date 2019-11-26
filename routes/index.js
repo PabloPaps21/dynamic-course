@@ -11,3 +11,4 @@ router.get('/create', (req, res, next) => res.render('create'))
 router.get('/classDetail', (req, res, next) => res.render('classDetail'))
 
 module.exports = router
+
