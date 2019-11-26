@@ -17,10 +17,10 @@ const courseSchema = new Schema(
     },
     description: String,
     fecha: String,
-    reviews: { //arreglo
+    reviews:[{
       type: Schema.Types.ObjectId,
       ref:'Review'
-    }
+     }]  
   }
 );
 
