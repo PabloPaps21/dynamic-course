@@ -13,18 +13,16 @@
                                 <h5 class="card-title">{{this.title}}</h5>
                                 <p class="card-text">{{this.description}}</p>
                                 <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
+                                <!--inscribir-->
+                                <form action="/delete" method="GET">
+                                    <button type="submit" class="btn btn-success">Inscribir</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </li>
-            <form action="/delete" method="GET">
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
             {{/each}}
         </ul>
-        <form action="/create" method="GET">
-            <button type="submit" class="btn btn-success">Insertar nuevo curso</button>
-        </form>
     </div>
 </div>

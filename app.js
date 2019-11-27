@@ -77,9 +77,9 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/authRoutes')
 const userRoutes = require("./routes/userRoutes");
 
-app.use('/',isLoggedIn, index);
-app.use('/', authRoutes)
-app.use('/',isNotLoggedIn, userRoutes)
+app.use('/', index);
+app.use('/' ,authRoutes)
+app.use('/', userRoutes)
 
 
 module.exports = app;

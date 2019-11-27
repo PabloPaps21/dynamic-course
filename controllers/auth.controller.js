@@ -36,7 +36,6 @@ exports.signupPost = (req, res, next) => {
 
 exports.userToken = (req,res) => {
   const {token} = req.params;
-  console.log(token)
   User.findOneAndUpdate(
     {token},
     {
@@ -68,14 +67,13 @@ exports.loginPost = (req, res, next ) => {
   })(req, res, next)
 }
 
-exports.profileGet = async (req, res) => {
-  const {id} = await req.user;
-  const courses = await Course.find({authorId: id});
+exports.profileGet = async(req, res) => {
+  const { id } = await req.user;
+  const courses = await Course.find({authorId:id});
   res.render("auth/profile", {
     user: req.user,
     courses,
-  });
-  console.log(courses)
+});
 }
 
 exports.logOut = (req, res) => {
@@ -88,24 +86,42 @@ exports.createCourseGet=(req,res) => {
 };
 
 exports.createCoursePost = async(req, res, next) => {
-  const { _id } = req.user;
-  const { title, description, category, fecha } = req.body;
-  let imageURL;
-  switch (category) {
-    case "Ciencia":
-      imageURL = "images/science.png"
-      break;
-    case "Arte":
-      imageURL = "images/art.png"
-      break;
-    case "Tecnología":
-      imageURL = "images/tech.png"
-      break;
-  }
-  const curso = await Course.create({title, description, category, imageURL, fecha, authorId: _id});
-  console.log(curso)
+
+  const { id } = req.user;
+  const { title, description,fecha,creditos } = req.body;
+  const curso = await Course.create({title, description, fecha, creditos, authorId: id});
   res.redirect("/profile");
 }
+
+
+exports.updateCourse = async(req, res, next) => {
+  let userUpdated;
+  const { courseid } = req.params;
+  const { title, description, creditos} = req.body;
+  if(req.file){
+    userUpdated = await Course.findByIdAndUpdate(courseid, {
+      $set: {title, description, creditos, photpURL: req.file.secure_url}
+    });
+  }else{
+    userUpdated = await Course.findByIdAndUpdate(courseid, {
+      $set: { title, description, creditos}
+    })
+  }
+req.user = userUpdated;
+res.redirect(`/profile`);
+
+  // Course.findByIdAndUpdate( courseid , { title, description })
+  //   .then(() => res.redirect("/profile"))
+  //   .catch(err => console.error(err));
+}
+
+exports.deleteCourse = (req, res) => {
+  const { courseId } = req.params;
+  Course.findByIdAndDelete(courseId)
+    .then(() => res.redirect("/profile"))
+    .catch(err => console.error(err));
+};
+
 
 exports.courseGet = async (req,res) => {
   const {id} = await req.user;
@@ -116,3 +132,4 @@ exports.courseGet = async (req,res) => {
   });
   console.log(courses)
 };
+
