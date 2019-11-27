@@ -15,10 +15,6 @@ const userSchema = new Schema (
       type:String,
       required: true,
     },
-    photoURL: {
-      type: String, 
-      default: "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
-    },
     status: {
       type:String,
       enum: ["Pending Confirmation","Active"],

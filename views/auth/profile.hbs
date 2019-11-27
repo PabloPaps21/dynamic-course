@@ -6,7 +6,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="images/tech.png" class="card-img" alt="tech">
+                            <img src="{{this.photoURL}}" class="card-img" alt="tech">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -16,8 +16,8 @@
                                 <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{this.id}}">Edit</button>
                                 <form action="/profile/{{this.id}}" method="DELETE">
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-        </form>
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -34,6 +34,12 @@
                     </button>
                   </div>
                   <div class="modal-body">
+                     <div class="custom-file">
+                      <input name="photoURL" type="file" class="custom-file-input" id="validatedCustomFile">
+                      <label class="custom-file-label" for="validatedCustomFile">
+                        <span>Choose file...</span>
+                      </label>
+                    </div>
                     <form action="/profile/{{this.id}}" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                         <label for="formGroupExampleInput">Titulo de la clase {{this.title}}</label>
@@ -45,7 +51,16 @@
                         <input name="description" type="text" class="form-control" id="formGroupExampleInput" value="{{this.description}}"
                           required>
                       </div>
-
+                      <div class="form-group">
+                          <label for="exampleFormControlSelect1">Créditos</label>
+                          <select name='creditos' class="form-control" id="exampleFormControlSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                          </select>
+                      </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -65,7 +80,11 @@
     </div>
 </div>
 
-
+<script>
+  document.querySelector('input[name="photoURL"]').addEventListener('change', (e) => {
+    document.querySelector('label.custom-file-label span').innerText = e.target.files[0].name
+  })
+</script>
 
 
 

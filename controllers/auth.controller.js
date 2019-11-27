@@ -68,11 +68,12 @@ exports.loginPost = (req, res, next ) => {
 }
 
 exports.profileGet = async(req, res) => {
-  const courses = await Course.find();
+  const { id } = await req.user;
+  const courses = await Course.find({authorId:id});
   res.render("auth/profile", {
     user: req.user,
     courses,
-  });
+});
 }
 
 exports.logOut = (req, res) => {
@@ -91,12 +92,25 @@ exports.createCoursePost = async(req, res, next) => {
   res.redirect("/profile");
 }
 
-exports.updateCourse = (req, res) => {
+exports.updateCourse = async(req, res, next) => {
+  let userUpdated;
   const { courseid } = req.params;
-  const { title, description } = req.body;
-  Course.findByIdAndUpdate( courseid , { title, description })
-    .then(() => res.redirect("/profile"))
-    .catch(err => console.error(err));
+  const { title, description, creditos} = req.body;
+  if(req.file){
+    userUpdated = await Course.findByIdAndUpdate(courseid, {
+      $set: {title, description, creditos, photpURL: req.file.secure_url}
+    });
+  }else{
+    userUpdated = await Course.findByIdAndUpdate(courseid, {
+      $set: { title, description, creditos}
+    })
+  }
+req.user = userUpdated;
+res.redirect(`/profile`);
+
+  // Course.findByIdAndUpdate( courseid , { title, description })
+  //   .then(() => res.redirect("/profile"))
+  //   .catch(err => console.error(err));
 }
 
 exports.deleteCourse = (req, res) => {
@@ -104,4 +118,14 @@ exports.deleteCourse = (req, res) => {
   Course.findByIdAndDelete(courseId)
     .then(() => res.redirect("/profile"))
     .catch(err => console.error(err));
+};
+
+exports.courseGet = async (req,res) => {
+  const {id} = await req.user;
+  const courses = await Course.find({authorId: {$ne: id}});
+  res.render("auth/course", {
+    user: req.user,
+    courses,
+  });
+  console.log(courses)
 };

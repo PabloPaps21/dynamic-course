@@ -2,7 +2,9 @@
 const router = require("express").Router();
 const passport = require("passport");
 var multer  = require('multer');
-var upload = multer()
+const uploadCloud = require("../config/cloudinary");
+const catchErrors = require("../middlewares/catchErrors");
+var upload = multer();
 const {
   signupGet,
   signupPost,
@@ -13,20 +15,21 @@ const {
   createCoursePost,
   profileGet,
   updateCourse,
-  deleteCourse
+  deleteCourse,
+  courseGet
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
 
-router.get("/signup", isLoggedIn, signupGet);
+router.get("/signup", signupGet);
 router.post("/signup", signupPost);
 
-router.get("/login", isLoggedIn, loginGet);
+router.get("/login", loginGet);
 router.post("/login", loginPost)
 
 router.get("/logout", logOut);
 
-router.get("/create", createCourseGet);
+router.get("/create", isLoggedIn ,createCourseGet);
 router.post("/create", createCoursePost);
 
 router.get("/profile", isLoggedIn, profileGet);
@@ -34,6 +37,8 @@ router.get("/profile", isLoggedIn, profileGet);
 
 router.post("/profile/:courseid", upload.none(), updateCourse);
 
-router.get("/profile/:courseId", deleteCourse);
+router.get("/profile/:courseId", isLoggedIn ,deleteCourse);
+
+router.get("/course", courseGet)
 
 module.exports = router;
