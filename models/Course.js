@@ -19,6 +19,7 @@ const courseSchema = new Schema(
       ref:'User'
     },
     description: String,
+    creditos: Number,
     date: String,
     reviews:[{
       type: Schema.Types.ObjectId,
