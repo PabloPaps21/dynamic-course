@@ -70,8 +70,13 @@ exports.loginPost = (req, res, next ) => {
   })(req, res, next)
 }
 
-exports.profileGet = (req, res) => {
-  res.render("auth/profile", {user: req.user});
+exports.profileGet = async (req, res) => {
+  const courses = await Course.find();
+  console.log(courses);
+  res.render("auth/profile", {
+    user: req.user,
+    courses,
+  });
 }
 
 exports.logOut = (req, res) => {
@@ -92,17 +97,3 @@ exports.createCoursePost = async(req, res, next) => {
  
   res.redirect("/profile");
 }
-
-
-exports.showCourses = async (req, res) => {
-  const courses = await Course.find();
-  console.log(courses)
-  res.render('/profile', {courses})
-}
-
-
-
-// router.get('/profile', async (req, res, next) => {
-//   const courses = await Course.find();
-//   res.render('profile', {courses})
-// })

@@ -10,7 +10,6 @@ const {
   createCourseGet,
   createCoursePost,
   profileGet,
-  showCourses
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
@@ -28,7 +27,7 @@ router.post("/create", createCoursePost);
 
 router.get("/profile", profileGet)
 
-router.get("/profile", showCourses);
+
 
 
 module.exports = router;
