@@ -1,5 +1,6 @@
 require("dotenv").config();
 const User = require("../models/User");
+const Course = require('../models/Course')
 const { sendEmail } = require("../controllers/email")
 const passport = require('passport')
  
@@ -69,11 +70,30 @@ exports.loginPost = (req, res, next ) => {
   })(req, res, next)
 }
 
-exports.profileGet = (req, res) => {
-  res.render("auth/profile", {user: req.user});
+exports.profileGet = async (req, res) => {
+  const courses = await Course.find();
+  console.log(courses);
+  res.render("auth/profile", {
+    user: req.user,
+    courses,
+  });
 }
 
 exports.logOut = (req, res) => {
   req.logOut()
   res.redirect('/')
+}
+
+exports.createCourseGet=(req,res) => {
+  res.render("auth/create");
+};
+
+exports.createCoursePost = async(req, res, next) => {
+  const { _id } = req.user;
+  
+  const { title, description,fecha } = req.body;
+  
+  const curso = await Course.create({title, description, fecha, authorId: _id});
+ 
+  res.redirect("/profile");
 }
