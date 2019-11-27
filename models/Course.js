@@ -10,7 +10,7 @@ const courseSchema = new Schema(
       type: String,
       enum: ["Ciencia", "Arte", "Tecnología"]
     },
-    creatorId:{
+    authorId:{
       type: Schema.Types.ObjectId,
       ref:"User"
     },

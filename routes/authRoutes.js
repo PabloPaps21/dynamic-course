@@ -1,3 +1,4 @@
+ 
 const router = require("express").Router();
 const passport = require("passport");
 const {
@@ -5,7 +6,11 @@ const {
   signupPost,
   loginGet,
   loginPost,
-  logOut
+  logOut,
+  createCourseGet,
+  createCoursePost,
+  profileGet,
+  showCourses
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
@@ -17,5 +22,13 @@ router.get("/login", isLoggedIn, loginGet);
 router.post("/login", loginPost)
 
 router.get("/logout", logOut);
+
+router.get("/create", createCourseGet);
+router.post("/create", createCoursePost);
+
+router.get("/profile", profileGet)
+
+router.get("/profile", showCourses);
+
 
 module.exports = router;
