@@ -58,21 +58,19 @@ exports.loginPost = (req, res, next ) => {
   passport.authenticate("local", (err, user, info) =>{
     if(err) return console.log(err);
     if(!user){
-      console.log(info)
       return res.render("auth/login")
     }
     req.logIn(user, err => {
       if (err) console.log(err)
       req.user = user
-      console.log(user)
       return res.redirect('/profile')//, {loggedUser: true}
     })
   })(req, res, next)
 }
 
 exports.profileGet = async (req, res) => {
-  const courses = await Course.find();
-  console.log(courses);
+  const {id} = await req.user;
+  const courses = await Course.find({authorId: id});
   res.render("auth/profile", {
     user: req.user,
     courses,
@@ -90,10 +88,20 @@ exports.createCourseGet=(req,res) => {
 
 exports.createCoursePost = async(req, res, next) => {
   const { _id } = req.user;
-  
-  const { title, description,fecha } = req.body;
-  
-  const curso = await Course.create({title, description, fecha, authorId: _id});
- 
+  const { title, description, category, fecha } = req.body;
+  let imageURL;
+  switch (category) {
+    case "Ciencia":
+      imageURL = "images/science.png"
+      break;
+    case "Arte":
+      imageURL = "images/art.png"
+      break;
+    case "Tecnología":
+      imageURL = "images/tech.png"
+      break;
+  }
+  const curso = await Course.create({title, description, category, imageURL, fecha, authorId: _id});
+  console.log(curso)
   res.redirect("/profile");
 }

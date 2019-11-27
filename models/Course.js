@@ -8,7 +8,8 @@ const courseSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ["Ciencia", "Arte", "Tecnología"]
+      enum: ["Ciencia", "Arte", "Tecnología"],
+      default: "Ciencia"
     },
     authorId:{
       type: Schema.Types.ObjectId,
@@ -17,6 +18,9 @@ const courseSchema = new Schema(
     studentId: {
       type: Schema.Types.ObjectId,
       ref:'User'
+    },
+    imageURL: {
+      type: String
     },
     description: String,
     date: String,
