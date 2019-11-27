@@ -36,7 +36,6 @@ exports.signupPost = (req, res, next) => {
 
 exports.userToken = (req,res) => {
   const {token} = req.params;
-  console.log(token)
   User.findOneAndUpdate(
     {token},
     {
@@ -58,25 +57,23 @@ exports.loginPost = (req, res, next ) => {
   passport.authenticate("local", (err, user, info) =>{
     if(err) return console.log(err);
     if(!user){
-      console.log(info)
       return res.render("auth/login")
     }
     req.logIn(user, err => {
       if (err) console.log(err)
       req.user = user
-      console.log(user)
       return res.redirect('/profile')//, {loggedUser: true}
     })
   })(req, res, next)
 }
 
-exports.profileGet = async (req, res) => {
-  const courses = await Course.find();
-  console.log(courses);
+exports.profileGet = async(req, res) => {
+  const { id } = await req.user;
+  const courses = await Course.find({authorId:id});
   res.render("auth/profile", {
     user: req.user,
     courses,
-  });
+});
 }
 
 exports.logOut = (req, res) => {
@@ -89,6 +86,7 @@ exports.createCourseGet=(req,res) => {
 };
 
 exports.createCoursePost = async(req, res, next) => {
+<<<<<<< HEAD
   const { _id } = req.user;
   console.log(_id)
   const { title, description,fecha } = req.body;
@@ -98,3 +96,48 @@ exports.createCoursePost = async(req, res, next) => {
   res.redirect("/profile");
 }
 
+=======
+  const { id } = req.user;
+  const { title, description,fecha,creditos } = req.body;
+  const curso = await Course.create({title, description, fecha, creditos, authorId: id});
+  res.redirect("/profile");
+}
+
+exports.updateCourse = async(req, res, next) => {
+  let userUpdated;
+  const { courseid } = req.params;
+  const { title, description, creditos} = req.body;
+  if(req.file){
+    userUpdated = await Course.findByIdAndUpdate(courseid, {
+      $set: {title, description, creditos, photpURL: req.file.secure_url}
+    });
+  }else{
+    userUpdated = await Course.findByIdAndUpdate(courseid, {
+      $set: { title, description, creditos}
+    })
+  }
+req.user = userUpdated;
+res.redirect(`/profile`);
+
+  // Course.findByIdAndUpdate( courseid , { title, description })
+  //   .then(() => res.redirect("/profile"))
+  //   .catch(err => console.error(err));
+}
+
+exports.deleteCourse = (req, res) => {
+  const { courseId } = req.params;
+  Course.findByIdAndDelete(courseId)
+    .then(() => res.redirect("/profile"))
+    .catch(err => console.error(err));
+};
+
+exports.courseGet = async (req,res) => {
+  const {id} = await req.user;
+  const courses = await Course.find({authorId: {$ne: id}});
+  res.render("auth/course", {
+    user: req.user,
+    courses,
+  });
+  console.log(courses)
+};
+>>>>>>> 3b5ac9d

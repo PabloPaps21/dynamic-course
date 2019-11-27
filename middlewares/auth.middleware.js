@@ -12,8 +12,11 @@ exports.isLoggedIn = (req, res, next) => {
   if(req.isAuthenticated()){
     
     req.app.locals.logged =  true;
+    
+    //next();
   } else {
     req.app.locals.logged = false;
+    res.redirect('/login')
   }
   return next();
 }

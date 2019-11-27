@@ -18,7 +18,12 @@ const courseSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref:'User'
     },
+    photoURL: {
+      type: String, 
+      default: "https://miro.medium.com/max/1200/1*jVnqkmLgnIbuVlFYl5-T_Q.png"
+    },
     description: String,
+    creditos: Number,
     date: String,
     reviews:[{
       type: Schema.Types.ObjectId,
