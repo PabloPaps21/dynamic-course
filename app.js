@@ -15,7 +15,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares/auth.middleware');
 
 
 mongoose
-  .connect(process.env.DB, {useNewUrlParser: true})
+  .connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
