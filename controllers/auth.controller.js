@@ -75,6 +75,7 @@ exports.profileGet = async (req, res) => {
     user: req.user,
     courses,
   });
+  console.log(courses)
 }
 
 exports.logOut = (req, res) => {
@@ -105,3 +106,13 @@ exports.createCoursePost = async(req, res, next) => {
   console.log(curso)
   res.redirect("/profile");
 }
+
+exports.courseGet = async (req,res) => {
+  const {id} = await req.user;
+  const courses = await Course.find({authorId: {$ne: id}});
+  res.render("auth/course", {
+    user: req.user,
+    courses,
+  });
+  console.log(courses)
+};

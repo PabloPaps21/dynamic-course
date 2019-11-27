@@ -10,6 +10,8 @@ const {
   createCourseGet,
   createCoursePost,
   profileGet,
+  courseGet,
+  //coursePost
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
@@ -24,6 +26,9 @@ router.get("/logout", logOut);
 
 router.get("/create", createCourseGet);
 router.post("/create", createCoursePost);
+
+router.get("/course", courseGet);
+//router.post("/course", coursePost);
 
 router.get("/profile", profileGet)
 
