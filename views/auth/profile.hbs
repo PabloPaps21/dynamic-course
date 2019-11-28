@@ -21,19 +21,21 @@
             <img src="{{this.photoURL}}" class="card-img" alt="tech">
               
               <div class="col-md-8">
-                <div class="card-body">
+                <div class="card-body ">
                   <h5 class="card-title">{{this.title}}</h5>
                   <p class="card-text">{{this.description}}</p>
                   <p class="card-text">Nivel de dificultad: {{this.creditos}}</p>
                   <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
 
-                  <form action="/editcourse/{{_id}}" method="GET">
-                    <button type="submit" class="btn btn-primary">Edit</button>
+                  <div class="botones-courses">
+                    <form action="/editcourse/{{_id}}" method="GET">
+                    <button type="submit" class="btn btn-primary">Editar</button>
                   </form>
                   
                   <form action="/profile/{{this.id}}" method="DELETE">
                       <button type="submit" class="btn btn-danger">Eliminar</button>
                   </form>
+                  </div>
                 </div>
               </div>
           </div>
@@ -55,19 +57,22 @@
       <div class="card mb-3" style="max-width: 540px;">
         {{#if this}}
         <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="{{this.photoURL}}" class="card-img" alt="tech">
+          <div class="col-md-3">
+            <img src="{{this.photoURL}}" class="img-car-curso" alt="tech">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div class="card-body">
               <h5 class="card-title">{{this.title}}</h5>
               <p class="card-text">{{this.description}}</p>
               <p class="card-text">Esta materia te da: {{this.creditos}} créditos</p>
               <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
-              <p>{{this.reviews}}</p>
+              
+              <h5>Comentarios</h5>
               {{#each this.reviews as |reviewId| }}
-                <p>{{reviews.reviewId}}</p>
+                <p>{{reviewId.descripcion}}</p>
+                <p>{{reviewId.calificacion}} estrella(s)</p>
               {{/each}}
+                  
               <button type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#exampleModal{{this.id}}">Comentar</button>
             </div>
@@ -120,9 +125,6 @@
     <!--Modal-->
     {{/each}}
   </ul>
-  <form action="/create" method="GET">
-    <button type="submit" class="btn btn-success">Insertar nuevo curso</button>
-  </form>
   <br>
 </div>
       {{!-- aqui --}}

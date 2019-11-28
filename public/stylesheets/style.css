@@ -66,4 +66,21 @@ a {
 .row div h2 {
   text-align: center; }
 
+.botones-courses {
+  display: flex;
+  flex-direction: row;
+  background-color: darkmagenta;
+  align-items: center;
+  justify-content: space-evenly; }
+
+.card-body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 90%; }
+
+.img-car-curso {
+  width: 100%;
+  margin-top: 50px; }
+
 /*# sourceMappingURL=style.css.map */

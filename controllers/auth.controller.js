@@ -56,6 +56,10 @@ exports.loginPost = (req, res, next ) => {
   })(req, res, next)
 }
 
+
+
+
+
 exports.profileGet = async(req, res) => {
   const { id } = await req.user;
   const inscrito = await req.user.inscrito;
@@ -63,7 +67,7 @@ exports.profileGet = async(req, res) => {
   let coursesInscrip = []
   let variable
   for(let i = 0; i < inscrito.length; i++){
-    variable = await Course.findOne({_id: inscrito[i] })
+    variable = await Course.findOne({_id: inscrito[i] }).populate("reviews")
     coursesInscrip.push(variable)
   }
   res.render("auth/profile", {
@@ -72,6 +76,11 @@ exports.profileGet = async(req, res) => {
     coursesInscrip
   });
 }
+
+
+
+
+
 
 
 
