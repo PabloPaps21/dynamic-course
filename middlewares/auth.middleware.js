@@ -17,3 +17,13 @@ exports.isLoggedIn = (req, res, next) => {
   }
   return next();
 }
+
+
+exports.isConnected = (req, res, next) => {
+  if(req.isAuthenticated()){
+    res.redirect('/profile');
+  }
+  else{
+    return next();
+  }
+}

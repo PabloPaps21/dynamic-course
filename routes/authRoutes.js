@@ -23,9 +23,9 @@ const {
   createReview
 } = require("../controllers/auth.controller");
 
-const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
+const { isLoggedIn, isNotLoggedIn, isConnected} = require('../middlewares/auth.middleware');
 
-router.get("/signup",signupGet);
+router.get("/signup", isConnected,signupGet);
 router.post("/signup", signupPost);
 
 router.get("/login", loginGet);
