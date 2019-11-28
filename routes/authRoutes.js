@@ -16,7 +16,8 @@ const {
   updateCourse,
   deleteCourse,
   courseGet,
-  signCoursePost
+  signCoursePost,
+  createReview
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
@@ -39,9 +40,10 @@ router.post("/sign/:id", signCoursePost);
 
 router.get("/profile", isLoggedIn, profileGet);
 
-
 router.post("/profile/:courseid", upload.none(), updateCourse);
 router.get("/profile/:courseId", isLoggedIn ,deleteCourse);
+
+router.post("/review", createReview);
 
 router.get("/course", courseGet)
 

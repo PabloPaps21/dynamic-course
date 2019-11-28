@@ -83,7 +83,7 @@
 </div>
 
 
-
+<!--CAmbios!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 <h1>Cursos inscritos</h1>
     <div class="courses-list">
       <h2>{{req.user}}</h2>
@@ -101,10 +101,7 @@
                                 <p class="card-text">{{this.description}}</p>
                                 <p class="card-text">Esta materia te da: {{this.creditos}} créditos</p>
                                 <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{this.id}}">Edit</button>
-                                <form action="/profile/{{this.id}}" method="DELETE">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{this.id}}">Comentar</button>
                             </div>
                         </div>
                     </div>
@@ -121,25 +118,14 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                     <div class="custom-file">
-                      <input name="photoURL" type="file" class="custom-file-input" id="validatedCustomFile">
-                      <label class="custom-file-label" for="validatedCustomFile">
-                        <span>Choose file...</span>
-                      </label>
-                    </div>
-                    <form action="/profile/{{this.id}}" method="POST" enctype="multipart/form-data">
+                    <form action="/profile/comment/{{this.id}}" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
-                        <label for="formGroupExampleInput">Titulo de la clase {{this.title}}</label>
-                        <input name="title" type="text" class="form-control" id="formGroupExampleInput" value="{{this.title}}"
+                        <label for="formGroupExampleInput">Comentario</label>
+                        <input name="title" type="text" class="form-control" id="formGroupExampleInput" value=""
                           required>
                       </div>
                       <div class="form-group">
-                        <label for="formGroupExampleInput">Descripcion</label>
-                        <input name="description" type="text" class="form-control" id="formGroupExampleInput" value="{{this.description}}"
-                          required>
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlSelect1">Créditos</label>
+                          <label for="exampleFormControlSelect1">Calificación</label>
                           <select name='creditos' class="form-control" id="exampleFormControlSelect1">
                               <option>1</option>
                               <option>2</option>
@@ -165,7 +151,7 @@
         </form>
         <br>
     </div>
-
+<!--CAmbios!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 <script>
   document.querySelector('input[name="photoURL"]').addEventListener('change', (e) => {
     document.querySelector('label.custom-file-label span').innerText = e.target.files[0].name

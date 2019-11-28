@@ -113,6 +113,13 @@ exports.signCoursePost = async(req, res, next) => {
   console.log(req.user)
   res.redirect("/profile");
 }
+
+exports.createReview = async(req, res, next) => {
+  const { id } = req.user;
+  const { title, description,fecha,creditos } = req.body;
+  const curso = await Course.create({title, description, fecha, creditos, authorId: id});
+  res.redirect("/profile");
+}
 ///////////////////////////////////
 
 exports.updateCourse = async(req, res, next) => {
