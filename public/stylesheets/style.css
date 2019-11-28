@@ -1,26 +1,69 @@
 body {
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  margin: 0;
+  font-family: 'Roboto Condensed', sans-serif;
+  background-size: cover;
+  background-color: #f5f3fb; }
 
 .navbar {
   margin: 0px;
-  padding: 0 px; }
+  padding: 0px; }
 
 a {
-  color: #00B7FF; }
-
-div {
-  margin: 10px; }
+  /*color: #00B7FF;*/ }
 
 #div-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: brown; }
+  /*background-color: brown;*/ }
 
 .courses-list {
   margin: 10px; }
 
 .card-img-top {
   background-size: 50px; }
+
+.bg-nav {
+  background-color: #2e1ab0 !important; }
+
+.custom-nav {
+  margin-left: 70%;
+  color: white; }
+
+.img-logo {
+  width: 100px;
+  height: 50; }
+
+.navbar-light .navbar-nav .nav-link {
+  color: orange !important; }
+
+.index-bg {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 119px 0; }
+
+.card-text {
+  font-size: 18px; }
+
+.card-titulo {
+  font-size: 60px;
+  font-weight: 700; }
+
+.navbar-light .navbar-toggler {
+  color: rgba(0, 0, 0, 0.5);
+  border-color: #ff5c14 !important; }
+
+.container-custom {
+  margin-top: 150px;
+  font-size: 18px;
+  font-weight: 700;
+  height: 70vh; }
+
+.footer-custom {
+  background-color: #eee6ff; }
+
+.row div h2 {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

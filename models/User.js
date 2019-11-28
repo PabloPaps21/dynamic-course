@@ -20,19 +20,10 @@ const userSchema = new Schema (
       enum: ["Pending Confirmation","Active"],
       default: "Pending Confirmation"
     },
-    token: String,
-    telephone_number: {
-      type: String,
-      trim: true
-    },
     credit: Number,
     inscrito: [{
       type: Schema.Types.ObjectId,
-      ref: 'User'
-    }],
-    catedra: [{
-     type: Schema.Types.ObjectId,
-     ref: 'User' 
+      ref: 'Course'
     }]
   },
   {

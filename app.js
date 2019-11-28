@@ -75,11 +75,9 @@ app.locals.title = 'Dynamic-course';
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authRoutes')
-const userRoutes = require("./routes/userRoutes");
 
-app.use('/', index);
+app.use('/',index);
 app.use('/' ,authRoutes)
-app.use('/', userRoutes)
 
 
 module.exports = app;

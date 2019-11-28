@@ -1,0 +1,43 @@
+ <h2>{{curso.title}}</h2>
+
+
+<form action="/editcourse/{{curso.id}}" method="POST" enctype="multipart/form-data">
+ <div class="custom-file">
+  <input name="photoURL" type="file" class="custom-file-input" id="validatedCustomFile" required>
+  <label class="custom-file-label" for="validatedCustomFile">
+    <span>Choose file...</span>
+  </label>
+</div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Titulo de la clase {{curso.title}}</label>
+    <input name="title" type="text" class="form-control" id="formGroupExampleInput" value="{{curso.title}}"
+      required>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Descripcion</label>
+    <input name="description" type="text" class="form-control" id="formGroupExampleInput" value="{{curso.description}}"
+      required>
+  </div>
+  <div class="form-group">
+      <label for="exampleFormControlSelect1">Créditos</label>
+      <select name='creditos' class="form-control" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+      </select>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+    <input type="submit" value="{{config.button}}">
+  </div>
+</form>
+
+
+
+<script>
+  document.querySelector('input[name="photoURL"]').addEventListener('change', (e) => {
+    document.querySelector('label.custom-file-label span').innerText = e.target.files[0].name
+  })
+</script>

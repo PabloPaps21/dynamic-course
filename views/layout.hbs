@@ -9,27 +9,29 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Inicio</a>
+<nav class="navbar navbar-expand-lg navbar-light  bg-nav">
+    <a class="navbar-brand" href="/"><img class="img-logo" src="https://res.cloudinary.com/djgqc9rrx/image/upload/v1574927180/dynamic/naranaja_raqsp2.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse custom-nav" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        {{!-- <li class="nav-item active">
           <a class="nav-link" href="/course">Cursos <span class="sr-only">(current)</span></a>
-        </li>
+        </li> --}}
         {{#if logged}}
+        <li><a class="nav-link nav-text" href="/profile">Perfil</a></li>
+        <li><a class="nav-link" href="/course">Cursos</a></li>
         <li><a class="nav-link" href="/create">Create</a></li>
-        <li><a class="nav-likn" href="/reviews">Reviews</a></li>
         <li><a class="nav-link" href="/logout">Logout</a></li>
         {{else}}
         <li class="nav-item">
@@ -39,26 +41,21 @@
           <a class="nav-link" href="/signup">Signup</a>
         </li>
         {{/if}}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
       </ul>
     </div>
     </nav>
     <div>
-      <h1>Dynamic-course</h1>
     </div>
 
     {{{body}}}
+
+
+    <footer class="page-footer footer-custom">
+      <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://www.ironhack.com/es/campus/mexico-city"> IHMex</a>
+      </div>
+    </footer>
+
   
     <script src="/javascripts/script.js"></script>
 

@@ -1,10 +1,10 @@
  
 const router = require("express").Router();
 const passport = require("passport");
-var multer  = require('multer');
 const uploadCloud = require("../config/cloudinary");
 const catchErrors = require("../middlewares/catchErrors");
-var upload = multer();
+const multer = require("multer")
+let upload = multer();
 const {
   signupGet,
   signupPost,
@@ -15,13 +15,17 @@ const {
   createCoursePost,
   profileGet,
   updateCourse,
+  updateCoursePost,
+  updateCourseGet,
   deleteCourse,
-  courseGet
+  courseGet,
+  signCoursePost,
+  createReview
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
 
-router.get("/signup", signupGet);
+router.get("/signup",signupGet);
 router.post("/signup", signupPost);
 
 router.get("/login", loginGet);
@@ -32,13 +36,25 @@ router.get("/logout", logOut);
 router.get("/create", isLoggedIn ,createCourseGet);
 router.post("/create", createCoursePost);
 
+
+router.post("/sign/:id", signCoursePost);
+router.post("/review/:id", upload.none(), createReview);
+
 router.get("/profile", isLoggedIn, profileGet);
 
 
-router.post("/profile/:courseid", upload.none(), updateCourse);
+//router.post("/profile/:courseid", upload.none(), updateCourse);
+
+router.get("/editcourse/:id", isLoggedIn ,updateCourseGet);
+router.post("/editcourse/:id",  uploadCloud.single("photoURL") ,updateCoursePost);
+
+
 
 router.get("/profile/:courseId", isLoggedIn ,deleteCourse);
 
-router.get("/course", courseGet)
+router.get("/course", isLoggedIn ,courseGet)
+
+router.get("/course", isLoggedIn ,courseGet)
+
 
 module.exports = router;
