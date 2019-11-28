@@ -1,4 +1,3 @@
- 
 const router = require("express").Router();
 const passport = require("passport");
 var multer  = require('multer');
@@ -16,7 +15,8 @@ const {
   profileGet,
   updateCourse,
   deleteCourse,
-  courseGet
+  courseGet,
+  signCoursePost
 } = require("../controllers/auth.controller");
 
 const { isLoggedIn, isNotLoggedIn } = require('../middlewares/auth.middleware');
@@ -32,11 +32,15 @@ router.get("/logout", logOut);
 router.get("/create", isLoggedIn ,createCourseGet);
 router.post("/create", createCoursePost);
 
+//////////////////////////////////////////
+//router.get("/create", isLoggedIn ,createCourseGet);
+router.post("/sign/:id", signCoursePost);
+//////////////////////////////////////////
+
 router.get("/profile", isLoggedIn, profileGet);
 
 
 router.post("/profile/:courseid", upload.none(), updateCourse);
-
 router.get("/profile/:courseId", isLoggedIn ,deleteCourse);
 
 router.get("/course", courseGet)

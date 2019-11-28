@@ -66,16 +66,26 @@ exports.loginPost = (req, res, next ) => {
     })
   })(req, res, next)
 }
-
+///////////////////////////////////////////////
 exports.profileGet = async(req, res) => {
   const { id } = await req.user;
+  const inscrito = await req.user.inscrito;
   const courses = await Course.find({authorId:id});
+  let coursesInscrip = []
+  let variable
+  for(let i = 0; i < inscrito.length; i++){
+    variable = await Course.findOne({_id: inscrito[i] })
+    coursesInscrip.push(variable)
+  }
+  console.log(typeof inscrito)
+  console.log(coursesInscrip)
   res.render("auth/profile", {
     user: req.user,
     courses,
-});
+    coursesInscrip
+  });
 }
-
+/////////////////////////////////////////////
 exports.logOut = (req, res) => {
   req.logOut()
   res.redirect('/')
@@ -86,13 +96,24 @@ exports.createCourseGet=(req,res) => {
 };
 
 exports.createCoursePost = async(req, res, next) => {
-
   const { id } = req.user;
   const { title, description,fecha,creditos } = req.body;
   const curso = await Course.create({title, description, fecha, creditos, authorId: id});
   res.redirect("/profile");
 }
 
+///////////////////////////////////
+exports.signCoursePost = async(req, res, next) => {
+  const { _id } = await req.user;
+  const{ id } = await req.params;
+  const userUpdated = await User.findByIdAndUpdate(
+    _id,
+    { $push: { inscrito: id } }
+  );
+  console.log(req.user)
+  res.redirect("/profile");
+}
+///////////////////////////////////
 
 exports.updateCourse = async(req, res, next) => {
   let userUpdated;
@@ -122,14 +143,23 @@ exports.deleteCourse = (req, res) => {
     .catch(err => console.error(err));
 };
 
-
+////////////////////////////////////////
 exports.courseGet = async (req,res) => {
   const {id} = await req.user;
+  const {inscrito} = await req.user;
   const courses = await Course.find({authorId: {$ne: id}});
+  //console.log(inscrito[0])
+  //console.log(courses[0].id)
+  inscrito.forEach(element => {
+    for(let i = 0; i < courses.length; i++){
+      if(element==courses[i].id){
+        courses.splice(i, 1);
+      }
+    }
+  })
   res.render("auth/course", {
     user: req.user,
     courses,
   });
-  console.log(courses)
 };
-
+/////////////////////////////////////
