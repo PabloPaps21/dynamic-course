@@ -162,23 +162,26 @@ exports.courseGet = async (req,res) => {
   });
 };
 
+///
 exports.signCoursePost = async(req, res, next) => {
   let { _id, credit } = await req.user;
   const{ id } = await req.params;
-  const{creditos} = await Course.findOne({_id: id });
+  const{creditos, authorId:{_id: idUser}} = await Course.findOne({_id: id }).populate("authorId");
+ 
   if(credit < creditos){
-     res.render("auth/course", {msg:"No tienes créditos suficientes"});
+    res.render("auth/course", {msg:"No tienes créditos suficientes"});
   }else{
     credit-=creditos
-  console.log(credit)
-  await User.findByIdAndUpdate(
-    _id,{ $push: { inscrito: id } });
-  await User.findByIdAndUpdate(_id,
-    {$set: {credit}},
-    {new: true});
+
+    let{credit: creditVar} = await User.findOne({_id: idUser });
+    creditVar+=creditos
+    await User.findByIdAndUpdate(idUser, {$set: {credit:creditVar}});
+    await User.findByIdAndUpdate(_id, { $push: { inscrito: id } });
+    await User.findByIdAndUpdate(_id, {$set: {credit}}, {new: true});
   res.redirect("/profile");
   }
 }
+/////
 
 exports.createReview = async(req, res, next) => {
   const { id } = req.params;
