@@ -181,7 +181,7 @@ exports.signCoursePost = async(req, res, next) => {
   res.redirect("/profile");
   }
 }
-/////
+///// ///
 
 exports.createReview = async(req, res, next) => {
   const { id } = req.params;
