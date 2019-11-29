@@ -72,7 +72,7 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly; }
+  justify-content: flex-start; }
 
 .card-body {
   background-position: center;
@@ -80,9 +80,12 @@ a {
   background-size: cover;
   width: 100%; }
 
+.alinea-btn {
+  display: flex;
+  justify-content: space-evenly; }
+
 .img-car-curso {
-  width: 100%;
-  margin-top: 50px; }
+  width: 100%; }
 
 .listas {
   width: 100%; }
@@ -161,7 +164,7 @@ a {
 
 .caja {
   background-color: #f2b04e;
-  height: 60px;
+  height: 96px;
   margin-top: 20px;
   margin-bottom: 60px;
   display: flex;
@@ -182,7 +185,9 @@ a {
   margin-left: 30px; }
 
 blockquote {
-  font-size: 25px; }
+  font-size: 25px;
+  font-weight: 700;
+  color: #3c3d40; }
 
 .cont-custom {
   margin-top: 30px;
@@ -196,10 +201,10 @@ blockquote {
   justify-content: center; }
 
 .under {
-  border-bottom: 1px solid darkviolet; }
+  border-bottom: 2px solid darkviolet; }
 
 .under-green {
-  border-bottom: 1px solid  #34eb98; }
+  border-bottom: 2px solid  #34eb98; }
 
 .favi {
   font-size: 45px;
@@ -254,6 +259,10 @@ blockquote {
     margin-left: 17px;
     font-size: 16px; }
   .hesiodo {
-    padding: 0 10px; } }
+    padding: 0 10px; }
+  .nombre {
+    font-size: 35px; }
+  .error {
+    font-size: 16px; } }
 
 /*# sourceMappingURL=style.css.map */

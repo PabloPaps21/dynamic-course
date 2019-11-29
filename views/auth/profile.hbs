@@ -1,21 +1,20 @@
 <div class=" container-fluid caja">
   <div class="container barra">
-    <div class="nombre">
-    <h1>Bienvenido: {{user.username}}</h1>
-
+    <div >
+    <h1 class="nombre">Bienvenido: {{user.username}}</h1>
+    <p>Tienes {{user.credit}} créditos</p>
     </div>
     <div class="boton-crear">
       <form action="/create" method="GET">
         <button type="submit" class="btn btn-primary">Crear nueva clase</button>
       </form>
     </div>
-    
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row justofy-content-center">
+  <div class="row justify-content-center">
     <div class="col-md-5 ">
       <h2>Mis clases</h2>
       
@@ -24,35 +23,38 @@
         <ul class="list-unstyled">
       {{#each courses}}
       <li class="media">
-        <div class="card mb-3" style="max-width: 100%;">
-          <div class="row no-gutters">
-           
-              <img src="{{this.photoURL}}" class="card-img" alt="tech">
-         
-            
-              
-              <div class="col-md-8">
-                <div class="card-body ">
-                  <h5 class="card-title">{{this.title}}</h5>
-                  <p class="card-text">{{this.description}}</p>
-                  <p class="card-text">Nivel de dificultad: {{this.creditos}}</p>
-                  <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4 fotito" >
+        <img src="{{this.photoURL}}" class="card-img" alt="tech" style=" padding-left: 10px;">
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-11 ">
+          <div class="card-body ">
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{this.description}}</p>
+            <p class="card-text">Nivel de dificultad: {{this.creditos}}</p>
+            <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
 
-                  <div class="botones-courses">
-                    <form action="/editcourse/{{_id}}" method="GET">
-                    <button type="submit" class="btn btn-primary">Editar</button>
-                  </form>
-                  
-                  <form action="/profile/{{this.id}}" method="DELETE">
-                      <button type="submit" class="btn btn-danger">Eliminar</button>
-                  </form>
-                  </div>
-                </div>
-              </div>
+            <div class="botones-courses">
+              <form action="/editcourse/{{_id}}" method="GET">
+              <button type="submit" class="btn btn-primary">Editar</button>
+            </form>
+            
+            <form action="/profile/{{this.id}}" method="DELETE">
+                <button type="submit" class="btn btn-danger" style="margin-left:10px">Eliminar</button>
+            </form>
+            </div>
           </div>
         </div>
-      </li>
-      
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</li>
+
       {{/each}}
     </ul>
       </div>
@@ -61,7 +63,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-5">
       <h2>Mis cursos</h2>
-      {{!-- aqui --}}
+
       <p>{{reviews}}</p>
 <div class="courses-list">
   <h2>{{req.user}}</h2>
@@ -73,22 +75,16 @@
       <div class="card mb-3" style="max-width: 100%;">
         {{#if this}}
         <div class="row no-gutters">
-          
-            <img src="{{this.photoURL}}" class="img-car-curso" alt="tech">
+          <div class="col-md-4 fotito">
+            <img src="{{this.photoURL}}" class="img-car-curso" alt="tech" style="padding-left: 10px;">
+          </div>
       
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{this.title}}</h5>
               <p class="card-text">{{this.description}}</p>
               <p class="card-text">Esta materia te da: {{this.creditos}} créditos</p>
-              <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
-              
-              <h5>Comentarios</h5>
-              {{#each this.reviews as |reviewId| }}
-                <p>{{reviewId.descripcion}}</p>
-                <p>{{reviewId.calificacion}} estrella(s)</p>
-              {{/each}}
-                  
+              <p class="card-text"><small class="text-muted">{{this.category}}</small></p>    
               <button type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#exampleModal{{this.id}}">Comentar</button>
             </div>
@@ -101,7 +97,7 @@
         {{/if}}
       </div>
     </li>
-    <!--Modal-->
+
     <div class="modal fade" id="exampleModal{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -138,13 +134,13 @@
         </div>
       </div>
     </div>
-    <!--Modal-->
+
     {{/each}}
   </ul>
 
-  </div>
-  <br>
-</div>
+        </div>
+        <br>
+      </div>
     </div>
   </div>
 </div>

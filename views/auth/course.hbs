@@ -1,7 +1,20 @@
-<h2 class="disponibles">Cursos disponibles</h2>
-<div class="container">
-  <button type="button" class="btn btn-danger"><a href="/profile" class="white"> Atrás</a></button>
+<div class=" container-fluid caja">
+  <div class="container barra">
+    <div class="nombre">
+    <h2 class="disponibles">Cursos disponibles</h2>
+    </div>
+    <div class="boton-crear">
+      <div class="container">
+        <button type="button" class="btn btn-danger"><a href="/profile" class="white"> Atrás</a></button>
+      </div>      
+    </div>
+  </div>
 </div>
+
+ <div class="row justify-content-center">
+    <h2 class="error" style="color: red;">{{msg}}</h2>
+  </div>
+
 <div  id="div-container">
   <div class="courses-list">
     <ul class="list-unstyled">
@@ -10,22 +23,56 @@
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4 fotito" >
-                <img src={{this.photoURL}} class="card-img" alt="tech">
+                <img src={{this.photoURL}} class="card-img" alt="tech" style="padding-left: 10px;">
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">{{this.title}}</h5>
                 <p class="card-text">{{this.description}}</p>
+                <p class="card-text">Créditos necesarios: {{this.creditos}}</p>
                 <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
-                <form action="/sign/{{this._id}}" method="post">
-                    <button type="submit" class="btn btn-success">Inscribir</button>
-                </form>
+                <div class="botones-courses">
+                  <div class="alinea-btn">
+                    <form action="/sign/{{this._id}}" method="post">
+                      <button type="submit" class="btn btn-success">Inscribir</button>
+                    </form>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{this.id}}" style="margin-left:10px">Comentarios</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </li>
-      {{/each}}
-    </ul>
-  </div>
+            <div class="modal fade" id="exampleModal{{this.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Curso: {{this.title}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                {{#if this.reviews}}
+                                    {{#each this.reviews as |reviewId| }}
+                                    <p>{{reviewId.descripcion}}</p>
+                                    <p>{{reviewId.calificacion}} estrella(s)</p>
+                                    {{/each}}
+                                {{else}}
+                                <p>Este curso aún no tiene comentarios</p>
+                                {{/if}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </ul>
+    </div>
 </div>

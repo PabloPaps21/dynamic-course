@@ -20,7 +20,10 @@ const userSchema = new Schema (
       enum: ["Pending Confirmation","Active"],
       default: "Pending Confirmation"
     },
-    credit: Number,
+    credit: {
+      type: Number,
+      default: 10
+    },
     inscrito: [{
       type: Schema.Types.ObjectId,
       ref: 'Course'

@@ -107,7 +107,6 @@ exports.updateCourseGet = (req, res) => {
 
   const { id } = req.params
 
-  console.log(req.params)
   Course.findById(id).then(curso => {
     let config = {
       title:"update course",
@@ -149,7 +148,7 @@ exports.deleteCourse = (req, res) => {
 exports.courseGet = async (req,res) => {
   const {id} = await req.user;
   const {inscrito} = await req.user;
-  const courses = await Course.find({authorId: {$ne: id}});
+  const courses = await Course.find({authorId: {$ne: id}}).populate("reviews");
   inscrito.forEach(element => {
     for(let i = 0; i < courses.length; i++){
       if(element==courses[i].id){
@@ -163,18 +162,22 @@ exports.courseGet = async (req,res) => {
   });
 };
 
-
-
-
-///////
 exports.signCoursePost = async(req, res, next) => {
-  const { _id } = await req.user;
+  let { _id, credit } = await req.user;
   const{ id } = await req.params;
-  const userUpdated = await User.findByIdAndUpdate(
-    _id,
-    { $push: { inscrito: id } }
-  );
+  const{creditos} = await Course.findOne({_id: id });
+  if(credit < creditos){
+     res.render("auth/course", {msg:"No tienes créditos suficientes"});
+  }else{
+    credit-=creditos
+  console.log(credit)
+  await User.findByIdAndUpdate(
+    _id,{ $push: { inscrito: id } });
+  await User.findByIdAndUpdate(_id,
+    {$set: {credit}},
+    {new: true});
   res.redirect("/profile");
+  }
 }
 
 exports.createReview = async(req, res, next) => {

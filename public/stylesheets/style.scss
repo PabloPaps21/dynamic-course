@@ -85,7 +85,7 @@ a {
   flex-direction: row;
 
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .card-body{
@@ -95,10 +95,12 @@ a {
   width: 100%;
 
 }
-
+.alinea-btn{
+  display: flex;
+  justify-content: space-evenly;
+}
 .img-car-curso{
   width: 100%;
-  margin-top: 50px;
 }
 .listas {
 
@@ -108,6 +110,7 @@ a {
 .fotito{
   display: flex;
   align-items: center;
+ 
 }
 
 #scroll {
@@ -180,7 +183,7 @@ a {
 }
 .caja{
   background-color: #f2b04e;
-  height: 60px;
+  height: 96px;
   margin-top: 20px;
   margin-bottom: 60px;
   display: flex;
@@ -204,7 +207,8 @@ a {
 
 blockquote{
   font-size: 25px;
-  
+  font-weight: 700;
+  color:#3c3d40;
 }
 .cont-custom{
   margin-top: 30px;
@@ -219,10 +223,10 @@ blockquote{
   justify-content: center;;
 }
 .under {
-  border-bottom: 1px solid darkviolet;
+  border-bottom: 2px solid darkviolet;
 }
 .under-green{
-  border-bottom: 1px solid  #34eb98;
+  border-bottom: 2px solid  #34eb98;
 }
 .favi{
   font-size: 45px;
@@ -259,6 +263,7 @@ blockquote{
   border-radius: 5px;
   height: 40px;
 }
+
 @media (min-width: 300px) and (max-width: 760px) {
   .formulario {
     width: 90%;
@@ -286,6 +291,12 @@ blockquote{
   }
   .hesiodo{
     padding: 0 10px;
+  }
+  .nombre {
+    font-size: 35px;
+  }
+  .error{
+    font-size: 16px;
   }
 }
 
