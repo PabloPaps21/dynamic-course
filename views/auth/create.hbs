@@ -1,36 +1,50 @@
-<div>
-<form action="/create" method="post" style="width: 50%">
-        <button type="submit" class="btn btn-primary">Crear Curso</button>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Título del curso</label>
-            <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Título">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Categoría</label>
-            <select name="category" class="form-control" id="exampleFormControlSelect1">
-                <option>Tecnología</option>
-                <option>Ciencia</option>
-                <option>Arte</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Descripción</label>
-            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput2">Fecha</label>
-            <input type="text" name="fecha" class="form-control" id="exampleFormControlInput2" placeholder="DD/MM/YYY">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Créditos</label>
-            <select name='creditos' class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
+<div class="container blockq">
+  <div class="row justify-content-center">
+    <blockquote >
+      <p class="hesiodo">"La educación ayuda a la <span class="under">persona</span> a aprender a ser lo que es capaz de ser".</p>
+      <small class="p-cita"> <cite title="Nombre Apellidos">Hesíodo</cite></small>
+    </blockquote>
+  </div>
+</div>
 
-    </form>
+
+
+<div class="container-fluid cont-custom">
+  <div class="row justify-content-center custom-row">
+    <form action="/create" method="post" class="formulario">
+      <h3> <span class="under-green">Crea un curso</span></h3>
+      <div class="form-group">
+          <label for="exampleFormControlInput1">Título del curso</label>
+          <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Título">
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlSelect1">Categoría</label>
+          <select name="category" class="form-control" id="exampleFormControlSelect1">
+              <option>Tecnología</option>
+              <option>Ciencia</option>
+              <option>Arte</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlTextarea1">Descripción</label>
+          <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput2">Fecha</label>
+          <input type="text" name="fecha" class="form-control" id="exampleFormControlInput2" placeholder="DD/MM/YYY">
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlSelect1">Créditos</label>
+          <select name='creditos' class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Curso</button>
+      <button type="button" class="btn btn-danger"><a href="/profile" class="white"> Cancelar</a></button>
+  </form>
+  </div>
 </div>

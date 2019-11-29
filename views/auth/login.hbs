@@ -1,22 +1,31 @@
 
+<div class="container blockq">
+  <div class="row justify-content-center">
+    <blockquote>
+      <p class="p-cita">Bienvenido al <span class="under">intercambio</span> de conocimiento.</p>
+    </blockquote>
+  </div>
+</div>
+
+  <div class="row justify-content-center">
+    <h2 class="error" style="color: red;">{{msg}}</h2>
+  </div>
   
-<div class="container-fluid container-custom">
+
+<div class="container-fluid contenedor-custom">
   <div class="row justify-content-center custom-row"> 
-
-  <h2 style="color: red;">{{msg}}</h2>
-
-  <form action="{{action}}" method="POST" style="width: 40%" >
+  <form action="{{action}}" method="POST" class="formulario" >
     <div class="form-group">
       <label for="exampleInputEmail1">Correo electrónico</label>
       <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-        placeholder="Enter email" required>
+        placeholder="Correo electrónico" required>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Contraseña</label>
-      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña"
         required>
     </div>
-    <button type="submit" class="btn btn-primary">Entra</button>
+    <button type="submit" class="btn btn-primary">Inicia sesión</button>
   </form>
   </div>
 </div>

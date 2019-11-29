@@ -112,7 +112,7 @@ exports.updateCourseGet = (req, res) => {
     let config = {
       title:"update course",
       action:`/editcourse/${id}`,
-      button: "Edit"
+      button: "Editar"
     }
     res.render("editCourse" , { config, curso })
   });

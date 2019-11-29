@@ -1,24 +1,35 @@
+<div class=" container-fluid caja">
+  <div class="container barra">
+    <div class="nombre">
+    <h1>Bienvenido: {{user.username}}</h1>
 
-<div class="caja">
-  <h1>Bienvenido: {{user.username}}</h1>
-<div class="mis-clases">
-</div>
+    </div>
+    <div class="boton-crear">
+      <form action="/create" method="GET">
+        <button type="submit" class="btn btn-primary">Crear nueva clase</button>
+      </form>
+    </div>
+    
+  </div>
 </div>
 
 
 <div class="container">
-  <div class="row ">
-    <div class="col-md-6">
+  <div class="row justofy-content-center">
+    <div class="col-md-5 ">
       <h2>Mis clases</h2>
-      <form action="/create" method="GET">
-        <button type="submit" class="btn btn-primary">Crear nueva clase</button>
-      </form>
-      <ul class="list-unstyled">
+      
+
+      <div class="listas ">
+        <ul class="list-unstyled">
       {{#each courses}}
       <li class="media">
-        <div class="card mb-3" style="max-width: 60%;">
+        <div class="card mb-3" style="max-width: 100%;">
           <div class="row no-gutters">
-            <img src="{{this.photoURL}}" class="card-img" alt="tech">
+           
+              <img src="{{this.photoURL}}" class="card-img" alt="tech">
+         
+            
               
               <div class="col-md-8">
                 <div class="card-body ">
@@ -44,23 +55,28 @@
       
       {{/each}}
     </ul>
+      </div>
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
       <h2>Mis cursos</h2>
       {{!-- aqui --}}
       <p>{{reviews}}</p>
 <div class="courses-list">
   <h2>{{req.user}}</h2>
-  <ul class="list-unstyled">
+
+  <div class="listas">
+    <ul class="list-unstyled">
     {{#each coursesInscrip}}
     <li class="media">
-      <div class="card mb-3" style="max-width: 540px;">
+      <div class="card mb-3" style="max-width: 100%;">
         {{#if this}}
         <div class="row no-gutters">
-          <div class="col-md-3">
+          
             <img src="{{this.photoURL}}" class="img-car-curso" alt="tech">
-          </div>
-          <div class="col-md-9">
+      
+          <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{this.title}}</h5>
               <p class="card-text">{{this.description}}</p>
@@ -79,7 +95,7 @@
           </div>
         </div>
         {{else}}
-        <div class="alert alert-dark" role="alert">
+        <div class="alert alert-dark eliminado" role="alert">
           <p>El usuario eliminó el curso</p>
         </div>
         {{/if}}
@@ -91,7 +107,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title{{this.title}}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -114,7 +130,7 @@
                 </select>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
             </form>
@@ -125,9 +141,10 @@
     <!--Modal-->
     {{/each}}
   </ul>
+
+  </div>
   <br>
 </div>
-      {{!-- aqui --}}
     </div>
   </div>
 </div>

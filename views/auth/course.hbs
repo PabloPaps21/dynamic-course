@@ -1,28 +1,31 @@
-<div id="div-container">
-    <div class="courses-list">
-        <ul class="list-unstyled">
-            {{#each courses}}
-            <li class="media">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src={{this.photoURL}} class="card-img" alt="tech">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{this.title}}</h5>
-                                <p class="card-text">{{this.description}}</p>
-                                <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
-                                <!--inscribir-->
-                                <form action="/sign/{{this._id}}" method="post">
-                                    <button type="submit" class="btn btn-success">Inscribir</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
+<h2 class="disponibles">Cursos disponibles</h2>
+<div class="container">
+  <button type="button" class="btn btn-danger"><a href="/profile" class="white"> Atrás</a></button>
+</div>
+<div  id="div-container">
+  <div class="courses-list">
+    <ul class="list-unstyled">
+      {{#each courses}}
+      <li class="media">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4 fotito" >
+                <img src={{this.photoURL}} class="card-img" alt="tech">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">{{this.description}}</p>
+                <p class="card-text"><small class="text-muted">{{this.category}}</small></p>
+                <form action="/sign/{{this._id}}" method="post">
+                    <button type="submit" class="btn btn-success">Inscribir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
 </div>

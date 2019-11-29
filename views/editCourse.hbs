@@ -1,7 +1,8 @@
  <h2>{{curso.title}}</h2>
 
-
-<form action="/editcourse/{{curso.id}}" method="POST" enctype="multipart/form-data">
+<div class="container-fluid contenedor-custom">
+  <div class="row justify-content-center custom-row"> 
+<form action="/editcourse/{{curso.id}}" method="POST" enctype="multipart/form-data" class="formulario">
  <div class="custom-file">
   <input name="photoURL" type="file" class="custom-file-input" id="validatedCustomFile" required>
   <label class="custom-file-label" for="validatedCustomFile">
@@ -29,11 +30,12 @@
       </select>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-    <input type="submit" value="{{config.button}}">
+    <button type="button" class="btn btn-danger"><a href="/profile" class="white"> Cancelar</a></button>
+    <input type="submit" value="{{config.button}}" class="btn-azul">
   </div>
 </form>
-
+  </div>
+  </div>
 
 
 <script>
